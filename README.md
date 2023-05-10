@@ -7,8 +7,6 @@ This is a Flask web application that allows users to upload or record audio file
 -   [Installation](#installation)
 -   [Usage](#usage)
 -   [Features](#features)
--   [File Structure](#file-structure)
--   [How It Works](#how-it-works)
 
 ## Installation
 
