@@ -1,0 +1,7 @@
+config.py
+
+venv/
+
+uploaded_audio/
+
+__pycache__/
