@@ -42,3 +42,7 @@ Visit `http://127.0.0.1:5000/` in your web browser to access the application.
 -   Generate a summary and title using OpenAI's GPT-4 API
 
 ## Screenshots
+<img width="1504" alt="Screenshot 2023-05-09 at 9 02 48 PM" src="https://github.com/tywenrick3/audio-gpt/assets/60354054/778741c5-a100-450e-9015-052d360afab3">
+
+<img width="1504" alt="Screenshot 2023-05-09 at 9 02 56 PM" src="https://github.com/tywenrick3/audio-gpt/assets/60354054/f96a7660-ef82-4c84-a99d-bec559c4bf30">
+
