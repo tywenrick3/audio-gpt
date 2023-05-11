@@ -40,3 +40,5 @@ Visit `http://127.0.0.1:5000/` in your web browser to access the application.
 -   Record audio directly from the browser
 -   Transcribe audio using OpenAI's Whisper ASR
 -   Generate a summary and title using OpenAI's GPT-4 API
+
+## Screenshots
