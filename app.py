@@ -25,12 +25,13 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
-if not os.path.exists('uploaded_audio'):
-    os.makedirs('uploaded_audio')
-
 flask_logger = logging.getLogger('werkzeug')
 flask_logger.setLevel(logging.INFO)
 app.config.from_object(Config)
+
+# Configure uploaded audio file destination
+if not os.path.exists('uploaded_audio'):
+    os.makedirs('uploaded_audio')
 
 openai.api_key = app.config['OPENAI_API_KEY']
 
@@ -59,6 +60,7 @@ def transcribe_chunk(audio_chunk):
         audio_chunk.export(temp_audio_file.name, format="wav")
         temp_audio_file.flush()
 
+        # retry logic attempt to avoid rate limit errors, redis task queing might be better solution
         retries = 0
         while retries < MAX_RETRIES:
             try:
@@ -98,7 +100,8 @@ def transcribe_audio(file_path):
 
     BATCH_SIZE = 20
 
-    num_threads = 4
+    # changed from 4: TODO, record time diffrenece in transcription
+    num_threads = 6
     # Use ThreadPoolExecutor to transcribe audio chunks concurrently
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
         for i in range(0, len(audio_chunks), BATCH_SIZE):
@@ -139,6 +142,7 @@ def generate_summary_and_title(transcript):
         )
     except Exception as e:
         raise ValueError(f"Failed to generate summary: {e}")
+
     summary = response['choices'][0]['message']['content']
     title, summary = summary.split('\n', 1)
 
